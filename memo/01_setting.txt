@@ -1,0 +1,78 @@
+
+1.	* Spring 프로젝트 디렉토리 구조
+	01) src/main/java : 자바코드(controller, model)
+	02) src/main/resources : 자바 코드에서 사용할 리소스(mybatis의 Mapper, sqlMapCofig.xml)
+	03) src/test/java : 테스트 코드
+	04) src/test/resources : 테스트 코드에서 사용할 리소스
+	05) JRE System Library : 자바 컴파일러
+	06) Maven Dependencies : 메이븐 - 라이브러리 관리도구(과거에는 lib폴더에 jar파일을 직접 넣어줘야했지만 여기서 알아서 관리해준다)
+	07) src : 웹디렉토리
+	08) src/main/webapp/resources : js, css, image 등
+	09) src/main/webapp/WEB-INF/classes : 컴파일된 클래스
+	10) src/main/webapp/WEB-INF/spring : 스프링 환경설정파일
+	11) src/main/webapp/WEB-INF/views : html, jsp 페이지
+	12) pom.xml : 메이븐에서 참조하는 설정파일
+
+2.	* 메이븐의 로컬 저장소
+	C:\Users\사용자계정\.m2\repository
+
+3.	* 메이븐(라이브러리관리도구)의 사용방법과 장점
+	01) https://mvnrepository.com/ ==> 여기에서 필요한 라이브러리를 검색한 후에 pom.xml의 dependencies에 추가시켜준다.
+	02) 프로젝트가 자체가 가벼워진다.
+	03) 라이브러리를 중앙저장소에서 저장하고 관리하며 공유하는 개념, 따라서 프로젝트를 새로 생성할 때마다 라이브러리 파일을 새로 다운받고 lib폴더에 추가 시켜주지 않아도 된다.
+
+4.	* 프로젝트 자체에 아무 오류가 없음에도 불구하고 오류가 발생할 경우 해결 방법 
+	01) 원인 : 메이븐에서 다운받은 라이브러리끼리 충돌을 일으키거나, 꼬이는 경우가 발생
+	02) 해결방법 : 메이븐 디렉토리를 전체삭제한다.(STS를 끈 상태에서)
+		
+4.	WEB-INF : 접근 금지 디렉토리 - 보안상을 이유로 외부에서 직접 접속을 할 수가 없다. 
+
+5.	home.jsp 실행과정
+	web.xml ==> root-context.xml(현재는 빈상태이기 때문에 skip) ==> servlet-context.xml
+	01) /WEN-INF/web.xml : 웹프로젝트의 배치 기술서(deploy descriptor, 웹프로젝트의 환경설정파일)
+	02) /WEB-INF/spring/root-context.xml : 스프링의 환경설정 파일(빈상태)
+	03) DispatcherServlet(스프링에 내장된 컨트롤러)로 이동, (/WEB-INF/spring/appServlet/servlet-context.xml)을 참조
+		xml 파일 안에 정의된 객체들을 로딩한다.
+		HomeController.java 로딩됨
+		
+6.	* bean 태그
+	<bean id="참조변수" class="클래스 이름">
+	</bean>		
+	
+	<bean id="HomeController" class="com.example.spring01.HomeController">
+	
+	</bean>
+	==> HomeController homeController = new HomeController();
+	
+7.	mybatis 설정
+		
+	DriverManagerDataSource : DB연동 클래스
+	
+	SqlSessionFactoryBean : SqlSessionTemplate 객체 생성
+	
+	SqlSessionTemplate : sqlSession 객체 생성
+		
+8.	메이븐 에러 발생시 해결방법
+	01) Java Build path에서 jdk버전을 1.8로 변경
+	02)	Project Facets에서 jdk버전을 1.8로 변경
+	03) 메이븐 저장소(.m2) 삭제, STS 재시작
+		
+9.  bean을 자동으로 검색해서 등록
+	<context:component-scan base-package="기준패키지 경로" />
+	@Controller : controller bean
+	@Repository : dao(DB관련 작업) bean
+	@Service : service(비지니스 로직) bean	
+	@Inject : 의존관계 주입(객체를 외부에서 만들어 주입시켜준다)
+	
+10. s가 붙어있는 클래스는 스프링에서 직접 객체를 관리한다. (위의 어노테이션이 필수적으로 붙어있어야함)
+	스프링에서 라이프사이클 직접관리, 그렇기때문에 s가 붙어있는 클래스에서는 new연산자 사용할 수가 없다.
+	
+		
+		
+		
+		
+		
+		
+		
+	
+	

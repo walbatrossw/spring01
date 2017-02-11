@@ -10,17 +10,23 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- 애노테이션을 사용가능하도록 설정 -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- view resolver(뷰리졸버, 뷰 해석기) -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 뷰(jsp)의 접두어, 접미어 설정 : 파일명만 작성할 수 있게 세팅 -->
+        <!-- 접두어(디렉토리) -->
 		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<!-- 접미어(확장자) -->
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 컴포넌트(bean) 자동검색 - com.example.spring01 이하의 모든 패키지에서 자동검색하겠다는 의미 -->
 	<context:component-scan base-package="com.example.spring01" />
 	
 	

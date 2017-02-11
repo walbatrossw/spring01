@@ -1,0 +1,36 @@
+**회원관리
+
+01.	패키지 생성	
+	com.example.spring01.member.controller
+	com.example.spring01.member.service
+	com.example.spring01.member.model.dao
+	com.example.spring01.member.model.dto
+
+02. Interface와 구현
+	
+	public interface MemberDAO {
+	}
+	public class MemberDAOImpl implements MemberDAO {
+	}
+
+03. 회원목록 흐름도				
+					   컨트롤러(흐름 제어)
+	member_list.do => MemberController.java
+					
+					   서비스(비즈니스 로직,db연동 이외의 작업들)
+	               => MemberService.java(인터페이스)
+	                  MemberServiceImpl.java(구현 클래스)  
+	               	   
+	               	   모델(비즈니스 로직,db연동)
+	               => MemberVO.java (데이터 저장) 
+					  MemberDAO.java (인터페이스)
+					  MemberDAOImpl.java( 구현 클래스 )
+					  member.xml ( mybatis mapper )       
+				   	   
+				   	   뷰 
+				   => member_list.jsp	
+			   	  
+04.	스프링 빈(bean)의 종류
+	@Controller	 컨트롤러 빈
+	@Service	 서비스 빈
+	@Repository  dao 빈
