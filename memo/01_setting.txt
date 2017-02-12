@@ -47,9 +47,7 @@
 7.	mybatis 설정
 		
 	DriverManagerDataSource : DB연동 클래스
-	
 	SqlSessionFactoryBean : SqlSessionTemplate 객체 생성
-	
 	SqlSessionTemplate : sqlSession 객체 생성
 		
 8.	메이븐 에러 발생시 해결방법
@@ -67,7 +65,9 @@
 10. s가 붙어있는 클래스는 스프링에서 직접 객체를 관리한다. (위의 어노테이션이 필수적으로 붙어있어야함)
 	스프링에서 라이프사이클 직접관리, 그렇기때문에 s가 붙어있는 클래스에서는 new연산자 사용할 수가 없다.
 	
-		
+11. json의 형식
+	{변수명: 값, 변수명: 값}
+	ex) ==> {name: "냉장고", price: 990000}	
 		
 		
 		
