@@ -1,6 +1,8 @@
 package com.example.spring01.member.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -41,14 +43,24 @@ public class MemberDAOImpl implements MemberDAO {
 	// 04. 회원 정보 수정 처리
 	@Override
 	public void deleteMember(String userId) {
-		// TODO Auto-generated method stub
-
+		sqlSession.delete("member.deleteMember",userId);
 	}
-
+	// 05. 회원 정보 삭제 처리
 	@Override
 	public void updateMember(MemberVO vo) {
 		sqlSession.update("member.updateMember", vo);
 
+	}
+	// 06. 회원 정보 수정 및 삭제를 위한 비밀번호 체크
+	@Override
+	public boolean checkPw(String userId, String userPw) {
+		boolean result = false;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userId", userId);
+		map.put("userPw", userPw);
+		int count = sqlSession.selectOne("member.checkPw", map);
+		if(count == 1) result= true;
+		return result;
 	}
 
 }

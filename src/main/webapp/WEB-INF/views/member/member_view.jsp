@@ -8,8 +8,20 @@
 <script>
 	$(document).ready(function(){
 		$("#btnUpdate").click(function(){
-			document.form1.action = "${path}/member/update.do";
-			document.form1.submit();
+			// 확인 대화상자	
+			if(confirm("수정하시겠습니까?")){
+				document.form1.action = "${path}/member/update.do";
+				document.form1.submit();
+			}
+		});
+	});
+	$(document).ready(function(){
+		$("#btnDelete").click(function(){
+			// 확인 대화상자 
+			if(confirm("삭제하시겠습니까?")){
+				document.form1.action = "${path}/member/delete.do";
+				document.form1.submit();
+			}
 		});
 	});
 </script>
@@ -54,6 +66,7 @@
 				<td colspan="2" align="center">
 					<input type="button" value="수정" id="btnUpdate">
 					<input type="button" value="삭제" id="btnDelete">
+					<div style="color: red;">${message}</div>
 				</td>
 			</tr>
 		</table>

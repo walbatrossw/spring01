@@ -33,6 +33,7 @@
 		FROM tbl_member
 		WHERE user_id = #{userId}
 	</select>
+	
 	<!-- 04. 회원정보 수정처리 -->
 	<update id="updateMember">
 		UPDATE tbl_member
@@ -44,4 +45,18 @@
 		WHERE
 			user_id = #{userId}	
 	</update>
+	
+	<!-- 05. 회원정보 삭제 처리 -->
+	<delete id="deleteMember">
+		DELETE FROM tbl_member
+		WHERE user_id = #{userId}
+	</delete>
+	
+	<!-- 06. 비밀번호 체크 -->
+	<select id="checkPw" resultType="int">
+		SELECT 
+			COUNT(*) 
+		FROM tbl_member
+		WHERE user_id = #{userId} AND user_pw = #{userPw}
+	</select>
 </mapper>
