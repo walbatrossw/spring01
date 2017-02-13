@@ -25,7 +25,7 @@
 	               => MemberVO.java (데이터 저장) 
 					  MemberDAO.java (인터페이스)
 					  MemberDAOImpl.java( 구현 클래스 )
-					  member.xml ( mybatis mapper )       
+					  memberMapper.xml ( mybatis mapper )       
 				   	   
 				   	   뷰 
 				   => member_list.jsp	

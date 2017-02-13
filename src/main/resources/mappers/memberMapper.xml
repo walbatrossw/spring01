@@ -3,6 +3,7 @@
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
+	<!-- 01. 회원록록 -->
 	<select id="memberList" resultType="com.example.spring01.member.model.dto.MemberVO">
 		SELECT 
 		  user_id AS userId, 
@@ -10,6 +11,14 @@
 		  user_email AS userEmail,
 		  user_regdate AS userRegdate
 		FROM tbl_member
-		ORDER BY userName
+		ORDER BY userId
 	</select>
+	
+	<!-- 02. 회원 등록 -->
+	<insert id="insertMember">
+		INSERT INTO tbl_member
+			(user_id, user_pw, user_name, user_email)
+		VALUES 
+			(#{userId}, #{userPw}, #{userName}, #{userEmail})	
+	</insert>
 </mapper>

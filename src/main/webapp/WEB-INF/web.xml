@@ -46,7 +46,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>encoding</filter-name>
-		<url-pattern>/</url-pattern> <!-- 모든 패턴(url) -->
+		<url-pattern>/*</url-pattern> <!-- 모든 패턴(url) -->
 		<!-- DispatcherServlet이 모든 요청을 가로챌 수 있도록 등록 -->
         <!-- 특정 url으로 변경하여 사용가능 ex) *.do -->
 	</filter-mapping>
