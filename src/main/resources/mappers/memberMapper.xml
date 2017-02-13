@@ -21,4 +21,27 @@
 		VALUES 
 			(#{userId}, #{userPw}, #{userName}, #{userEmail})	
 	</insert>
+	
+	<!-- 03. 회원정보 상세조회 -->
+	<select id="viewMember" resultType="com.example.spring01.member.model.dto.MemberVO">
+		SELECT 
+		  user_id AS userId, 
+		  user_name AS userName,
+		  user_email AS userEmail,
+		  user_regdate AS userRegdate,
+		  user_regdate AS userUpdatedate
+		FROM tbl_member
+		WHERE user_id = #{userId}
+	</select>
+	<!-- 04. 회원정보 수정처리 -->
+	<update id="updateMember">
+		UPDATE tbl_member
+		SET
+			user_pw = #{userPw},
+			user_name = #{userName},
+			user_email = #{userEmail},
+			user_updatedate = SYSDATE
+		WHERE
+			user_id = #{userId}	
+	</update>
 </mapper>

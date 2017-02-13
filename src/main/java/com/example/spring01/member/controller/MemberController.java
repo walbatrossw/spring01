@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +16,9 @@ import com.example.spring01.member.service.MemberService;
 
 @Controller // 현재의 클래스를 controller bean에 등록시킴
 public class MemberController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
 	// MemberService 객체를 스프링에서 생성하여 주입시킴
 	@Inject
 	MemberService memberService;
@@ -48,6 +53,23 @@ public class MemberController {
 		// /member/list.do : 루트 디렉토리를 기준
 		// member/list.do : 현재 디렉토리를 기준
 		// member_list.jsp로 리다이렉트
+		return "redirect:/member/list.do";
+	}
+	
+	// 03 회원 상세정보 조회
+	@RequestMapping("member/view.do")
+	public String memberView(String userId, Model model){
+		// 회원 정보를 model에 저장
+		model.addAttribute("dto", memberService.viewMember(userId));
+		//System.out.println("클릭한 아이디 확인 : "+userId);
+		logger.info("클릭한 아이디 : "+userId);
+		// member_view.jsp로 포워드
+		return "member/member_view";
+	}
+	// 04. 회원 정보 수정 처리
+	@RequestMapping("member/update.do")
+	public String memberUpdate(@ModelAttribute MemberVO vo){
+		memberService.updateMember(vo);
 		return "redirect:/member/list.do";
 	}
 }

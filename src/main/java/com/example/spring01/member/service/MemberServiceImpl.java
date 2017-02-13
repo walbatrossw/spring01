@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	@Inject
 	MemberDAOImpl memberDao;
 	
-	// 01. 회원 목록
+	// 01. 전체 회원 목록 조회
 	@Override
 	public List<MemberVO> memberList() {
 		return memberDao.memberList();
@@ -28,12 +28,12 @@ public class MemberServiceImpl implements MemberService {
 	public void insertMember(MemberVO vo) {
 		memberDao.insertMember(vo);
 	}
-
+	// 03. 회원 정보 상세 조회 
 	@Override
-	public MemberVO viewMember() {
-		return null;
+	public MemberVO viewMember(String userId) {
+		return memberDao.viewMember(userId);
 	}
-
+	// 04. 회원 정보 수정 처리
 	@Override
 	public void deleteMember(String userId) {
 		
@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void updateMember(MemberVO vo) {
-		
+		memberDao.updateMember(vo);
 	}
 
 }

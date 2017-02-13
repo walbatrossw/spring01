@@ -20,7 +20,8 @@
 		<c:forEach var="row" items="${list}">
 		<tr>
 			<td>${row.userId}</td>
-			<td>${row.userName}</td>
+			<!-- 회원정보 상세조회를 위해 a태그 추가 -->
+			<td><a href="${path}/member/view.do?userId=${row.userId}">${row.userName}</a></td>
 			<td>${row.userEmail}</td>
 			<td>${row.userRegdate}</td>
 		</tr>

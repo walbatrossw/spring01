@@ -10,7 +10,7 @@ public interface MemberService {
 	// 회원 입력
 	public void insertMember(MemberVO vo);
 	// 회원 정보 상세보기
-	public MemberVO viewMember();
+	public MemberVO viewMember(String userId);
 	// 회원삭제
 	public void deleteMember(String userId);
 	// 회원정보 수정
